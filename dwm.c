@@ -267,7 +267,6 @@ static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
-static int globalborder;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -1269,16 +1268,6 @@ recttomon(int x, int y, int w, int h)
 void
 resize(Client *c, int x, int y, int w, int h, int interact)
 {
-	XWindowChanges wc;
-	if (c->isfloating || selmon->lt[selmon->sellt]->arrange == NULL)
-	{
-		globalborder = 0;
-	} else
-	{
-		if (selmon->lt[selmon->sellt]->arrange == monocle) { globalborder = 0 - borderpx ; }
-		else { globalborder = gappx; }
-	}
-
 	if (applysizehints(c, &x, &y, &w, &h, interact))
 		resizeclient(c, x, y, w, h);
 }
