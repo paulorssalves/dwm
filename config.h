@@ -102,6 +102,7 @@ static Key keys[] = {
 	{ MODKEY, 			XK_b,	spawn,		{.v= bravecmd}},
 	{ MODKEY, 			XK_m,	spawn,		SHCMD("st -e neomutt")},
 	{ MODKEY, 			XK_t,	spawn,		SHCMD("st -e ranger")},
+	{ 0, 				XK_Print,	spawn,	SHCMD("scrot %Y-%m-%d-%s_$wx$h.jpg -e 'mv $f ~/Imagens/screenshots/'" )},
 	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_emacs}},
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
 };
