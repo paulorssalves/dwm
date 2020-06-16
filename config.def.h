@@ -36,6 +36,8 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "brave-browser", NULL,  NULL,       1 << 0,       0, 		 -1 },
 	{ "emacs", NULL,  NULL,       1 << 0,       0, 		 -1 },
+	{ "Spotify", NULL,  NULL,       1 << 0,       0, 		 -1 },
+	{ "pavucontrol", NULL,  NULL,       1 << 0,       0, 		 -1 },
 };
 
 /* layout(s) */
@@ -68,6 +70,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *bravecmd[] = {"/usr/bin/brave-browser", NULL};
 static const char *load_emacs[] = {"/usr/bin/emacs", NULL};
+static const char *spotifymsc[] = {"/usr/bin/spotify", NULL};
+static const char *pavucontrol[] = {"/usr/bin/pavucontrol", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -121,10 +125,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	/* added stuff */
 	{ MODKEY, 			XK_b,	spawn,		{.v= bravecmd}},
+	{ MODKEY|ShiftMask, 	  	XK_s,	spawn,		{.v= spotifymsc}},
+	{ MODKEY|ShiftMask, 	  	XK_p,	spawn,		{.v= pavucontrol}},
+	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_emacs}},
 	{ MODKEY, 			XK_m,	spawn,		SHCMD("st -e neomutt")},
 	{ MODKEY, 			XK_t,	spawn,		SHCMD("st -e ranger")},
 	{ 0, 				XK_Print,	spawn,	SHCMD("scrot %Y-%m-%d-%s_$wx$h.jpg -e 'mv $f ~/Imagens/screenshots/'" )},
-	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_emacs}},
+	{ ShiftMask, 			XK_Print,	spawn,	SHCMD("import png:- | xclip -selection clipboard -t image/png" )},
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
 };
 
