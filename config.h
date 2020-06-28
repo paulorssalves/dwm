@@ -10,17 +10,18 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=12", "fontawesome:size=12" };
+static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#d49c11"; // "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeTitle]  = { col_gray3, col_gray1,  col_cyan },
 };
 
 /* tagging */
@@ -32,12 +33,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "brave-browser", NULL,  NULL,       1 << 0,       0, 		 -1 },
-	{ "emacs", NULL,  NULL,       1 << 0,       0, 		 -1 },
-	{ "Spotify", NULL,  NULL,       1 << 0,       0, 		 -1 },
-	{ "pavucontrol", NULL,  NULL,       1 << 0,       0, 		 -1 },
+	{ "Gimp",     NULL,       NULL,       1 << 4,       0,                -1 },
+	{ "Darktable",     NULL,  NULL,       1 << 4,       0,                -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       0,                -1 },
+	{ "Brave-browser",  NULL, NULL,       1 << 1,       0,                -1 },
+	{ "Pavucontrol",  NULL,   NULL,       1 << 7,       1,                -1 },
 };
 
 /* layout(s) */
@@ -68,7 +68,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *bravecmd[] = {"/usr/bin/brave-browser", NULL};
+static const char *firefox[] = {"/usr/bin/firefox", NULL};
 static const char *load_emacs[] = {"/usr/bin/emacs", NULL};
 static const char *spotifymsc[] = {"/usr/bin/spotify", NULL};
 static const char *pavucontrol[] = {"/usr/bin/pavucontrol", NULL};
@@ -124,11 +124,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	/* added stuff */
-	{ MODKEY, 			XK_b,	spawn,		{.v= bravecmd}},
+	{ MODKEY, 			XK_b,	spawn,		{.v= firefox}},
 	{ MODKEY|ShiftMask, 	  	XK_s,	spawn,		{.v= spotifymsc}},
 	{ MODKEY|ShiftMask, 	  	XK_p,	spawn,		{.v= pavucontrol}},
 	{ MODKEY, 			XK_m,	spawn,		SHCMD("st -e neomutt")},
 	{ MODKEY, 			XK_t,	spawn,		SHCMD("st -e ranger")},
+	{ MODKEY, 			XK_n,	spawn,		SHCMD("st -e newsboat")},
 	{ 0, 				XK_Print,	spawn,	SHCMD("scrot %Y-%m-%d-%s_$wx$h.jpg -e 'mv $f ~/Imagens/screenshots/'" )},
 	{ ShiftMask, 			XK_Print,	spawn,	SHCMD("import png:- | xclip -selection clipboard -t image/png" )},
 	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_emacs}},
