@@ -33,11 +33,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       1 << 4,       0,                -1 },
+	{ "Gimp",					 NULL,  NULL,       1 << 4,       0,                -1 },
 	{ "Darktable",     NULL,  NULL,       1 << 4,       0,                -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,                -1 },
-	{ "Brave-browser",  NULL, NULL,       1 << 1,       0,                -1 },
-	{ "Pavucontrol",  NULL,   NULL,       1 << 7,       1,                -1 },
+	{ "Firefox",			 NULL,  NULL,       1 << 1,       0,                -1 },
+	{ "thunderbird-default",   NULL,  NULL,				1 << 2,       0,                -1 },
+	{ "obsidian",			 NULL,  NULL,				1 << 3,       0,                -1 },
+	{ "Pavucontrol",   NULL,  NULL,       1 << 7,       1,                -1 },
 };
 
 /* layout(s) */
