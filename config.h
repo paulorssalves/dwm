@@ -67,10 +67,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *firefox[] = {"/usr/bin/firefox", NULL};
-static const char *load_emacs[] = {"/usr/bin/emacs", NULL};
-static const char *spotifymsc[] = {"/usr/bin/spotify", NULL};
+static const char *load_obsidian[] = {"/usr/bin/obsidian", NULL};
+static const char *spotifymsc[] = {"/usr/bin/flatpak run com.spotify.Client", NULL};
 static const char *pavucontrol[] = {"/usr/bin/pavucontrol", NULL};
 
 static Key keys[] = {
@@ -127,12 +127,12 @@ static Key keys[] = {
 	{ MODKEY, 			XK_b,	spawn,		{.v= firefox}},
 	{ MODKEY|ShiftMask, 	  	XK_s,	spawn,		{.v= spotifymsc}},
 	{ MODKEY|ShiftMask, 	  	XK_p,	spawn,		{.v= pavucontrol}},
-	{ MODKEY, 			XK_m,	spawn,		SHCMD("st -e neomutt")},
-	{ MODKEY, 			XK_t,	spawn,		SHCMD("st -e ranger")},
-	{ MODKEY, 			XK_n,	spawn,		SHCMD("st -e newsboat")},
+	{ MODKEY, 			XK_m,	spawn,		SHCMD("/usr/bin/thunderbird")},
+	{ MODKEY, 			XK_t,	spawn,		SHCMD("kitty -e ranger")},
+	{ MODKEY, 			XK_n,	spawn,		SHCMD("kitty -e newsboat")},
 	{ 0, 				XK_Print,	spawn,	SHCMD("scrot %Y-%m-%d-%s_$wx$h.jpg -e 'mv $f ~/Imagens/screenshots/'" )},
 	{ ShiftMask, 			XK_Print,	spawn,	SHCMD("import png:- | xclip -selection clipboard -t image/png" )},
-	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_emacs}},
+	{ MODKEY|ShiftMask, 	 	XK_e,	spawn,		{.v= load_obsidian}},
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
 };
 
